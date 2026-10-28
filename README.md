@@ -30,5 +30,3 @@ Built for the PFD200 Professional Development portfolio (FdSc Computing, Level 5
 ## Status
 Work in progress for the 30 October 2026 submission. Automated tests and the SQL report function are being added.
 
-## Use of AI
-Parts of this code were generated with Claude (Anthropic) and reviewed by the author. The SQL report function and the tests are written by the author with guidance. Details are in the portfolio's Statement on the Use of AI.
