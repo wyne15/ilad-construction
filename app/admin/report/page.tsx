@@ -6,6 +6,7 @@ import PageHead from "@/components/PageHead";
 import WeekNav from "@/components/WeekNav";
 import { supabase } from "@/lib/supabase";
 import { monday, todayStr } from "@/lib/dates";
+import { totalsByWorker } from "@/lib/report";
 
 type HoursRow = { week_start: string; site: string; worker: string; total_hours: number };
 type WorkRow = {
@@ -41,11 +42,7 @@ function Report() {
     };
   }, [week]);
 
-  const perWorker = new Map<string, number>();
-  hours.forEach((h) =>
-    perWorker.set(h.worker, (perWorker.get(h.worker) ?? 0) + Number(h.total_hours))
-  );
-  const people = Array.from(perWorker.entries());
+  const people = totalsByWorker(hours);
   const grandTotal = people.reduce((sum, [, v]) => sum + v, 0);
   const maxPerson = people.reduce((m, [, v]) => Math.max(m, v), 0);
   const extraCount = work.filter((w) => w.is_extra).length;
